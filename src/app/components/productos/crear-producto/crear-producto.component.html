@@ -1,0 +1,75 @@
+<div class="page-container" @fadeInOut>
+    <mat-card class="create-card" matRipple>
+        <mat-card-header>
+            <mat-card-title>Crear Nuevo Producto</mat-card-title>
+            <mat-card-subtitle>Complete todos los campos requeridos</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <form [formGroup]="productoForm" (ngSubmit)="onSubmit()" class="create-form">
+                <mat-form-field @formFieldAnimation appearance="outline">
+                    <mat-label>Nombre del Producto</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-icon matSuffix>inventory_2</mat-icon>
+                    <mat-error>{{ getErrorMessage('name') }}</mat-error>
+                    <mat-hint>Mínimo 3 caracteres</mat-hint>
+                </mat-form-field>
+
+                <div class="form-row">
+                    <mat-form-field @formFieldAnimation appearance="outline">
+                        <mat-label>Precio</mat-label>
+                        <input matInput type="number" formControlName="price" required min="0">
+                        <mat-icon matSuffix>attach_money</mat-icon>
+                        <mat-error>{{ getErrorMessage('price') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field @formFieldAnimation appearance="outline">
+                        <mat-label>Stock</mat-label>
+                        <input matInput type="number" formControlName="stock" required min="0">
+                        <mat-icon matSuffix>inventory</mat-icon>
+                        <mat-error>{{ getErrorMessage('stock') }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field @formFieldAnimation appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea 
+                        matInput 
+                        formControlName="description" 
+                        rows="4" 
+                        required
+                        #description
+                        maxlength="500"
+                    ></textarea>
+                    <mat-hint align="end">{{description.value.length}} / 500</mat-hint>
+                    <mat-error>{{ getErrorMessage('description') }}</mat-error>
+                </mat-form-field>
+
+                <div class="button-container">
+                    <button 
+                        mat-button 
+                        type="button"
+                        (click)="volver()"
+                        class="cancel-button"
+                        matTooltip="Volver a la lista de productos"
+                    >
+                        <mat-icon>arrow_back</mat-icon>
+                        Cancelar
+                    </button>
+                    <button 
+                        mat-raised-button 
+                        color="primary" 
+                        type="submit" 
+                        [disabled]="productoForm.invalid || isLoading"
+                        [@buttonState]="productoForm.valid ? 'valid' : 'invalid'"
+                        matTooltip="Guardar el nuevo producto"
+                        class="submit-button"
+                    >
+                        <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+                        <span *ngIf="!isLoading">Guardar Producto</span>
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

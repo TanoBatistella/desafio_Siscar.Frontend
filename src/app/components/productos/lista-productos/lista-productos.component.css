@@ -1,0 +1,23 @@
+.mat-mdc-card {
+    margin: 20px;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-column-actions {
+    width: 100px;
+    text-align: center;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }

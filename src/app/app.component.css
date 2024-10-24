@@ -1,0 +1,10 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:host {
+    display: block;
+    height: 100vh;
+}
+
+mat-toolbar {
+    margin-bottom: 20px;
+}
